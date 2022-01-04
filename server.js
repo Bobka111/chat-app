@@ -27,4 +27,4 @@ socketServer.on("connection", socket => {
     console.log("user has connected")
 });
 
-httpServer.listen(80);
+httpServer.listen(Number(process.env.PORT));
