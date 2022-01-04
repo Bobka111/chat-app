@@ -27,4 +27,6 @@ socketServer.on("connection", socket => {
     console.log("user has connected")
 });
 
-httpServer.listen(Number(process.env.PORT));
+const port = Number(process.env.PORT) || 6969;
+httpServer.listen(port);
+console.log(`Server now online on http://localhost:${port}/`)
