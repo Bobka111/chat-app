@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobis chat app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./chat.css">
+
+    <script>
+        if(localStorage.getItem("name") == null) location.replace(location.origin + "/login");        
+    </script>
+
+    <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+    <script src="./chat.js"></script>
+</head>
+<body>
+    <div id="chat">
+
+    </div>
+    <div id="textbox">
+        <input id="message" placeholder="Enter your message here">
+        <button id="submit">📨</button>
+    </div>
+
+    <script>
+        setInterval(() => {
+            document.getElementById("chat").scroll(0, document.getElementById("chat").scrollHeight);
+        }, 100);
+
+        document.getElementById("submit").addEventListener("click", () => {
+            sendValidatedMessage(
+            document.getElementById("message").value
+        );
+        });
+
+        document.addEventListener("keypress", key => {
+            if(key.key == "Enter") {
+                sendValidatedMessage(document.getElementById("message").value)
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobis chat app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: rgb(31, 33, 39);
+            font-family: "Open Sans", sans-serif;
+            color: white;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10rem;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        input#name {
+            padding: 1rem;
+            padding-left: 2rem;
+            background-color: rgb(43, 44, 49);
+            border: none;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        button#btn {
+            padding: 0.5rem;
+            background-color: rgb(43, 44, 49);
+            border: 0;
+            border-radius: 0;
+            color: white;
+            cursor: pointer;
+        }
+
+        button#btn:hover {
+            filter: brightness(1.25);
+        }
+    </style>
+
+    <script>
+        const setName = name => { 
+            if(name.length > 0 && name.length <= 10) {
+                if(!new RegExp("/[a-zA-Z0-9]/g").test(name)) {
+                    localStorage.setItem("name", name);
+                    location.replace(location.origin);
+                } else alert("Name not allowed! Allowed characters for a name are a-z, A-Z, 0-9");
+            } else alert("Name not allowed! Name must be between 1 and 10 characters!");
+        }
+    </script>
+</head>
+<body>
+    <h2>Choose a name</h2>
+    <input id="name" placeholder="Enter your name here">
+    <button id="btn">Enter the chat room</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", () => setName(
+            document.getElementById("name").value
+        ));
+        document.addEventListener("keypress", key => {
+            if(key.key == "Enter") setName(document.getElementById("name").value);
+        })
+    </script>
+</body>
+</html>

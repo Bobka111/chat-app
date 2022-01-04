@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(31, 33, 39);
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    display: grid;
+    grid-template-rows: 90% 10%;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+div#chat {
+    padding: 1rem;
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+
+div#textbox {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    position: sticky;
+    bottom: 0;
+    right: 0;
+}
+
+button#submit {
+    border: none;
+    border-radius: 0;
+    font-size: xx-large;
+    background-color: rgb(48, 50, 58);
+    cursor: pointer;
+}
+
+input#message {
+    border: none;
+    border-radius: 0;
+    padding: 1rem;
+    background-color: rgb(60, 62, 70);
+    color: white;
+}
