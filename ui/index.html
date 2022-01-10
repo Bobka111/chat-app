@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./chat.css">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
     <script>
         if(localStorage.getItem("name") == null) location.replace(location.origin + "/login");        
@@ -19,7 +20,6 @@
 </head>
 <body>
     <div id="chat">
-
     </div>
     <div id="textbox">
         <input id="message" placeholder="Enter your message here">
@@ -27,18 +27,24 @@
     </div>
 
     <script>
-        setInterval(() => {
-            document.getElementById("chat").scroll(0, document.getElementById("chat").scrollHeight);
-        }, 100);
-
         document.getElementById("submit").addEventListener("click", () => {
+            if(document.getElementById("message").value == "/logout") {
+                localStorage.clear();
+                location.replace(location.origin + "/login");
+            }
+
             sendValidatedMessage(
-            document.getElementById("message").value
-        );
+                document.getElementById("message").value
+            );
         });
 
         document.addEventListener("keypress", key => {
             if(key.key == "Enter") {
+                if(document.getElementById("message").value == "/logout") {
+                    localStorage.clear();
+                    location.replace(location.origin + "/login");
+                }
+
                 sendValidatedMessage(document.getElementById("message").value)
             }
         });
